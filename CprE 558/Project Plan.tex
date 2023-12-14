@@ -1,0 +1,139 @@
+\documentclass[twocolumn, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\geometry{a4paper, margin=1.0in}
+
+\title{\textbf{Project Plan: Energy-Efficient Real-Time Scheduling in Sensor Networks via DVFS on Raspberry Pi}}
+\author{
+    Nihaal Zaheer \\
+    \texttt{nzaheer@iastate.edu} \\
+    CprE 558 Section 2
+    \and
+    Varun Advani \\
+    \texttt{vsadvani@iastate.edu} \\
+    CprE 558 Section 2
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Project Type}
+\vspace{-2mm}
+Implementation (Type 2) - This project focuses on the implementation and testing of various DVFS algorithms in a Raspberry Pi-based sensor network environment to optimize energy consumption.
+
+\vspace{-3mm}
+
+\section*{Project Goal}
+\vspace{-2mm}
+The project aims to explore the implementation of Dynamic Voltage and Frequency Scaling (DVFS) techniques/algorithms and explore scalability of the Worst Case Execution Time (WCET) w.r.t the processor speed within an operating system running on a Raspberry Pi, as part of a sensor network. The goals include:
+
+\begin{itemize}
+    \item \textbf{OS-related Focus:} Integrate DVFS techniques with the Raspberry Pi's Linux-based operating system to manage CPU speed and voltage dynamically, based on real-time computational demands from sensor data processing.
+    \item \textbf{Architecture-related Focus:} Analyze the impact of DVFS on the Raspberry Pi's hardware architecture, particularly on CPU and memory performance, power consumption, and thermal dynamics.
+    \item \textbf{Protocol-related Focus:} Develop and test protocols for efficient communication between the Raspberry Pi and the sensors, ensuring data integrity and timely processing while under different DVFS states.
+    \item \textbf{Application-related Focus:} Implement a real-time environmental monitoring application or intrudision detection application, that utilizes sensor data to demonstrate the practical effectiveness of DVFS in managing energy consumption while maintaining data processing accuracy and speed.
+\end{itemize}
+
+\vspace{5mm}
+
+\section*{Solution Approach}
+\vspace{-2mm}
+Our approach to implementing energy-efficient real-time scheduling in a Raspberry Pi-based sensor network focuses on the application of Dynamic Voltage and Frequency Scaling (DVFS) techniques. The approach encompasses both hardware and software aspects, involving the following key components:
+
+\vspace{-2mm}
+
+\subsection*{Hardware and Software Setup}
+\begin{itemize} 
+    \item A Raspberry Pi 3 B+ with an ARM cortex 
+  A53 processor.
+    \item $PICAN2$\\
+    \url {https://copperhilltech.com/pican-2-can-bus-interface-for-raspberry-pi/}
+    \item $DHT11$ Temperature/Humidity Sensor
+    \url{https://www.adafruit.com/product/386}
+    \item $KY038$ Microphone Sound Sensor
+    \url{https://sensorkit.joy-it.net/en/sensors/ky-038}
+    \item $BMP085$ Barometric Sensor ($300-1100 hPa$)
+    \url {https://www.adafruit.com/product/391#technical-details}
+    \item Optional PIR Motion Sensor 
+    \url {https://www.adafruit.com/product/189}
+    \item Optional USB interfaced webcam for object detection (OpenCV)
+    \item Optional power measurement tools connected to the Raspberry Pi, for precise monitoring of power consumption during different DVFS states.
+     \item The Raspberry Pi OS image will be customized with the integration of the PREEMPT RT patch for enhanced real-time capabilities. The setup guidelines will be followed as per \url{https://robskelly.com/2020/10/14/raspberry-pi-4-with-64-bit-os-and-preempt_rt/}.
+     \vspace{3mm}
+    \item \textbf{Sensor Data Management:} Development of Python or C++ scripts for efficient sensor data collection, aggregation, and pre-processing. Use of libraries like RPi.GPIO, PySerial, and others for interfacing with different sensors.
+    \item \textbf{DVFS Control and Monitoring:} Installation and configuration of CPU frequency scaling tools like cpufrequtils or cpupower for managing and monitoring the CPU's operational states.
+    \item \textbf{Real-time Data Analysis and Reporting:} Utilization of lightweight databases or data handling tools like SQLite or Pandas (Python) for real-time data logging and analysis.
+    
+   
+\end{itemize}
+
+
+\subsection*{DVFS Techniques}
+\begin{itemize}
+    \item Implementing and testing different DVFS algorithms to find an optimal balance between energy efficiency and performance. These include:
+    \begin{itemize}
+        \item \textbf{Ondemand Governor:} Dynamically adjusts the CPU frequency according to current load, increasing frequency during high-load periods and decreasing during low-load periods.
+        \item \textbf{Conservative Governor:} Similar to the ondemand governor, but with a more gradual adjustment of CPU frequency, aiming for a more stable performance and energy usage.
+        \item \textbf{Custom Algorithm:} Tailored to sensor network data characteristics, adjusting frequency and voltage based on predictive models of sensor data loads and processing requirements.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Software Development}
+\begin{itemize}
+    \item Developing a lightweight, efficient operating system configuration on the Raspberry Pi, optimized for low-power operation and quick sensor data processing.
+    \item Writing scripts and applications in Python or C++ for sensor data collection, processing, and DVFS state control.
+\end{itemize}
+
+
+\subsection*{Performance and Energy Consumption Monitoring}
+\begin{itemize}
+    \item Systematic logging of CPU frequency, voltage levels, sensor data throughput, and energy consumption under various DVFS modes.
+    \item Analysis tools developed to compare and evaluate the energy-performance trade-offs for different DVFS strategies.
+\end{itemize}
+
+
+This approach integrates technical elements from both the hardware and software realms, aiming to deliver a comprehensive solution that addresses the challenges of energy efficiency in a real-time sensor network environment.
+\vspace{-2mm}
+\section*{Expected Outcomes}
+\vspace{-2mm}
+The implementation of energy-efficient real-time scheduling in sensor networks using DVFS on Raspberry Pi aims to achieve the following outcomes:
+
+\subsection*{Performance Evaluation}
+\begin{itemize}
+    \item Detailed performance metrics comparing the implemented DVFS algorithms (ondemand, conservative, and custom) against standard operating conditions without DVFS. This comparison will focus on:
+    \begin{itemize}
+        \item Energy consumption reduction percentages.
+        \item Sensor data processing latency.
+        \item System responsiveness under different load scenarios.
+    \end{itemize}
+    \item Analysis of the trade-offs between energy efficiency and data processing performance, providing insights into the practical implications of DVFS in real-world IoT environments.
+\end{itemize}
+
+\subsection*{Prototype Demonstration}
+\begin{itemize}
+    \item A working prototype of the Raspberry Pi with connected sensors, demonstrating the practical application of DVFS techniques in managing energy consumption while maintaining data integrity and processing speed.
+    \item Demonstration of how the system adapts to varying environmental data loads and how DVFS algorithms effectively modulate power usage.  
+\end{itemize}
+
+\subsection*{Documentation and Insights}
+\begin{itemize}
+    \item Comprehensive documentation covering the development process, DVFS implementation strategies, and findings from performance evaluations.
+    \item Valuable insights and recommendations for future work in the domain of energy-efficient real-time scheduling in sensor networks.
+\end{itemize}
+
+\section*{List of References}
+\nocite{*}  
+\printbibliography[heading=none]  
+
+
+
+
+
+\end{document}
